@@ -19,4 +19,90 @@ public class EnsembleTest extends junit.framework.TestCase {
 		assertTrue(union.contains(4));
 	}
 	
+	
+	//Question 1_2 method test pour add()
+    public void testAdd() {
+        question1.Ensemble<Integer> e1, e2;
+        e1 = new question1.Ensemble();
+        e2 = new question1.Ensemble();
+        assertEquals(true, e1.add(0));
+        assertEquals(true, e1.add(1));
+        assertEquals(2, e1.size());
+
+        assertEquals(true, e2.add(2));
+        assertEquals(true, e2.add(3));
+        assertEquals(2, e2.size());
+
+        assertEquals(false, e1.add(1));
+        assertEquals(2, e1.size());
+        
+        assertTrue(e1.contains(0));
+        assertTrue(e1.contains(0));
+        assertTrue(e2.contains(3));
+         
+        assertEquals(true, e1.add(9));
+        assertEquals(3, e1.size());
+    }
+    
+    
+    
+    
+    //Question 1_4 (tests pour testInter(), testDiff(), testDiffSym())
+    
+    
+    //*********************************************************//
+    public void testInter() {
+        question1.Ensemble<Integer> e1, e2;
+        e1 = new question1.Ensemble();
+        assertEquals(true, e1.add(2));
+        assertEquals(true, e1.add(3));
+
+        e2 = new question1.Ensemble();
+        assertEquals(true, e2.add(3));
+        assertEquals(true, e2.add(4));
+
+        question1.Ensemble<Integer> inter = e1.inter(e2);
+        assertEquals(1, inter.size());
+        assertFalse(inter.contains(2));
+        assertTrue(inter.contains(3));
+        assertFalse(inter.contains(4));
+    }
+
+    
+    public void testDiff() {
+        question1.Ensemble<Integer> e1, e2;
+        e1 = new question1.Ensemble();
+        assertEquals(true, e1.add(2));
+        assertEquals(true, e1.add(3));
+        assertEquals(true, e1.add(5));
+
+        e2 = new question1.Ensemble();
+        assertEquals(true, e2.add(3));
+        assertEquals(true, e2.add(4));
+
+        question1.Ensemble<Integer> diff = e1.diff(e2);
+        assertEquals(2, diff.size());
+        assertTrue(diff.contains(2));
+        assertFalse(diff.contains(3));
+        assertFalse(diff.contains(4));
+        assertTrue(diff.contains(5));
+    }
+
+    public void testDiffSym() {
+        question1.Ensemble<Integer> e1, e2;
+        e1 = new question1.Ensemble();
+        assertEquals(true, e1.add(2));
+        assertEquals(true, e1.add(3));
+
+        e2 = new question1.Ensemble();
+        assertEquals(true, e2.add(3));
+        assertEquals(true, e2.add(4));
+
+        question1.Ensemble<Integer> diffSym = e1.diffSym(e2);
+        assertEquals(2, diffSym.size());
+        assertTrue(diffSym.contains(2));
+        assertFalse(diffSym.contains(3));
+        assertTrue(diffSym.contains(4));
+    }
+    
 }
